@@ -3,14 +3,14 @@ import { Link, useParams } from "react-router-dom";
 
 const AlbumDetailPage = ({ albums, onAddToCart }) => {
   // create the state of the component
-  const { AlbumId } = useParams();
+  const { id } = useParams();
   const [qty, setQty] = useState(1);
 
-  //   which product to display on this page?
-  const product = albums.find((p) => p.id === AlbumId);
+  //   which album to display on this page?
+  const album = albums.find((p) => p.id === id);
 
-  //   sanity check: if product is missing?
-  if (!albums) {
+  //   sanity check: if album is missing?
+  if (!album) {
     return (
       <div className="detail-error">
         <h2>Album Not Found</h2>
@@ -24,36 +24,36 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
   return (
     <div className="detail-container">
       <nav className="breadcrumb">
-        <Link to="/">Catalog</Link> &gt; <span>{albums.title}</span>
+        <Link to="/">Catalog</Link> &gt; <span>{album.title}</span>
       </nav>
 
       <div className="detail-grid">
-        <img src={albums.image} alt={albums.title} className="detail-img" />
+        <img src={album.image} alt={album.title} className="detail-img" />
 
         <div className="detail-info">
-          <span className="albums-genre">{albums.genre}</span>
-          <h1 className="detail-title">{albums.title}</h1>
-          <p className="detail-price">{albums.price.toFixed(2)}</p>
-          <p className="detail-desc">{albums.description}</p>
+          <span className="albums-genre">{album.genre}</span>
+          <h1 className="detail-title">{album.title}</h1>
+          <p className="detail-price">{album.price.toFixed(2)}</p>
+          <p className="detail-desc">{album.description}</p>
         <div className="track-list-section">
             <h3>Tracklist</h3>
             <ol className="tracklist-list">
-                {albums.tracklist.map((track, index) => (
+                {album.tracklist.map((track, index) => (
                 <li key={index}>{track}</li>))}
             </ol>
         </div>
         <div className="detail-specs">
             <h3>Specifications</h3>
             <ol className="specs-list">
-                <li>Catalog Number: {albums.specs.catalogNumber}</li>
-                <li>Weight: {albums.specs.weight}</li>
-                <li>Speed: {albums.specs.speed}</li>
-                <li>Label: {albums.specs.label}</li>
+                <li>Catalog Number: {album.specs.catalogNumber}</li>
+                <li>Weight: {album.specs.weight}</li>
+                <li>Speed: {album.specs.speed}</li>
+                <li>Label: {album.specs.label}</li>
             </ol>
         </div>
         <div className="stock-tag">
-            {product.stock > 0
-              ? "✓ In Stock ({albums.stock} units available)"
+            {album.stock > 0
+              ? `✓ In Stock (${album.stock} units available)`
               : "Out of Stock"}
         </div>
 
@@ -64,7 +64,7 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
                 type="number"
                 id="detail-qty"
                 min="1"
-                max={albums.stock}
+                max={album.stock}
                 value={qty}
                 onChange={(e) =>
                   setQty(Math.max(1, parseInt(e.target.value, 10) || 1))
@@ -73,7 +73,7 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
             </div>
             <button
               className="btn btn-primary"
-              onClick={() => onAddToCart(albums, qty)}
+              onClick={() => onAddToCart(album, qty)}
             >
               Add {qty} to cart
             </button>

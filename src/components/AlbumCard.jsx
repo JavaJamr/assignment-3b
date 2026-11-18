@@ -6,18 +6,18 @@ const AlbumCard = ({ albums, onAddToCart }) => {
   if (!albums) return null;
 
   return (
-    <article className="albums-card">
+    <article className="album-card">
       <Link className="albums-img-link" to={`/albums/${albums.id}`}>
         <img
-          className="albums-image"
+          className="album-image"
           src={albums.image}
           alt={albums.title}
           loading="lazy"
         />
       </Link>
-      <div className="albums-body">
-        <span className="albums-genre">{albums.genre}</span>
-        <h3 className="albums-title">
+      <div className="album-body">
+        <span className="album-genre">{albums.genre}</span>
+        <h3 className="album-title">
           <Link to={`/albums/${albums.id}`}>{albums.title}</Link>
         </h3>
         <p className="albums-price">

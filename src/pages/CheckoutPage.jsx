@@ -24,7 +24,6 @@ const CheckoutPage = ({ cart, onClearCart }) => {
   const taxes = subtotal * 0.06;
   const total = subtotal + taxes;
 
-  // <MISSED THIS FUNCTION IN CLASS>event listener to handle form input fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
