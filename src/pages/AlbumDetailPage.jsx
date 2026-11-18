@@ -7,7 +7,7 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
   const [qty, setQty] = useState(1);
 
   //   which product to display on this page?
-  const product = albums.find((p) => p.id === albums.id);
+  const product = albums.find((p) => p.id === AlbumId);
 
   //   sanity check: if product is missing?
   if (!albums) {
@@ -24,15 +24,15 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
   return (
     <div className="detail-container">
       <nav className="breadcrumb">
-        <Link to="/">Catalog</Link> &gt; <span>{albums.name}</span>
+        <Link to="/">Catalog</Link> &gt; <span>{albums.title}</span>
       </nav>
 
       <div className="detail-grid">
-        <img src={albums.image} alt={albums.name} className="detail-img" />
+        <img src={albums.image} alt={albums.title} className="detail-img" />
 
         <div className="detail-info">
-          <span className="albums-category">{albums.category}</span>
-          <h1 className="detail-title">{albums.name}</h1>
+          <span className="albums-genre">{albums.genre}</span>
+          <h1 className="detail-title">{albums.title}</h1>
           <p className="detail-price">{albums.price.toFixed(2)}</p>
           <p className="detail-desc">{albums.description}</p>
         <div className="track-list-section">

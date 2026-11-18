@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import AlbumCard from "../components/AlbumCard";
 
-function CatalogPage({ products, onAddToCart }) {
+function CatalogPage({ albums, onAddToCart }) {
   
-  const categories = ["All", "Jazz", "Electronic", "Rock", "Classical"];
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const genre = ["All", "Jazz", "Electronic", "Rock", "Classical"];
+  const [selectedGenre, setSelectedGenre] = useState("All");
 
-  const validProducts = products || [];
+  const validAlbums = albums || [];
 
-  const filteredProducts =
-    selectedCategory === "All"
-      ? validProducts
-      : validProducts.filter((p) => p.category === selectedCategory);
+  const filteredAlbums =
+    selectedGenre === "All"
+      ? validAlbums
+      : validAlbums.filter((p) => p.genre === selectedGenre);
 
   return (
     <div className="catalog-container">
@@ -24,23 +24,23 @@ function CatalogPage({ products, onAddToCart }) {
 
       {
  }
-      <div className="filter-bar">
-        {categories.map((cat) => {
-          <button
-            key={cat}
-            className={`filter-pill ${selectedCategory === cat ? "active" : ""}`}
-            onClick={() => setSelectedCategory(cat)}
-          >
-            {cat}
-          </button>;
-        })}
-      </div>
+<div className="filter-bar">
+  {genre.map((cat) => (
+    <button
+      key={cat}
+      className={`filter-pill ${selectedGenre === cat ? "active" : ""}`}
+      onClick={() => setSelectedGenre(cat)}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
 
-      <div className="product-grid">
-        {filteredProducts.map((albums) => (
+      <div className="album-grid">
+        {filteredAlbums.map((albums) => (
           <AlbumCard
             key={albums.id}
-            product={albums.title}
+            albums={albums}
             onAddToCart={onAddToCart}
           />
         ))}

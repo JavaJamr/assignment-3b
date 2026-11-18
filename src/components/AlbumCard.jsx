@@ -11,14 +11,14 @@ const AlbumCard = ({ albums, onAddToCart }) => {
         <img
           className="albums-image"
           src={albums.image}
-          alt={albums.name}
+          alt={albums.title}
           loading="lazy"
         />
       </Link>
       <div className="albums-body">
-        <span className="albums-category">{albums.category}</span>
+        <span className="albums-genre">{albums.genre}</span>
         <h3 className="albums-title">
-          <Link to={`/albums/${albums.id}`}>{albums.name}</Link>
+          <Link to={`/albums/${albums.id}`}>{albums.title}</Link>
         </h3>
         <p className="albums-price">
           $
@@ -29,7 +29,7 @@ const AlbumCard = ({ albums, onAddToCart }) => {
         <button
           className="btn btn-secondary btn-block"
           type="button"
-          onClick={() => onAddToCart(product)}
+          onClick={() => onAddToCart(albums)}
         >
           Add to Cart
         </button>
