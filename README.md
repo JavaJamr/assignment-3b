@@ -27,6 +27,6 @@ To recall what these instructions mean, read them, and then review the lecture c
 - Story 3 (Stateful Slide-Over Cart): As a shopper, I want to add albums to my cart from catalog or detail views, and inside the cart, I should be able to update quantities (increase or decrease), delete items, and see calculated totals in an interactive cart drawer without page reloads.
     **Add to cart, remove 1 add 1  give totals no reloads**
 - Story 4 (Header Cart Badge Sync): As a user browsing across different routes, I want the sticky header to display an updated badge showing total item count in my cart.
-    **Breadcrumb navigation**
+    **Breadcrumb navigation and sticky Header**
 - Story 5 (Checkout Validation & Funnel): As a customer completing an order, I want to review my itemized order on a dedicated checkout route (`/checkout`), submit shipping details via a controlled web form, and receive an instant confirmation that resets the active cart.
     **let them go to a checkout page**

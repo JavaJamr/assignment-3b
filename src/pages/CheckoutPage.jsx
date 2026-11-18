@@ -64,6 +64,11 @@ const CheckoutPage = ({ cart, onClearCart }) => {
 
   return (
     <div className="checkout-container">
+      <nav className="breadcrumb">
+        <Link to="/">Home</Link>
+        <span>/</span>
+      <span className="current">Checkout</span>
+    </nav>
       <h1>Checkout and Order Confirmation</h1>
 
       <div className="checkout-grid">

@@ -7,7 +7,7 @@ export const ALBUMS = [
     genre: "Jazz",
     price: 38.99,
     stock: 9,
-    image: "./src/assets/KindOfBlue.png",
+    image: "/src/assets/KindOfBlue.png",
     description: "Peak modal jazz recorded in two sessions in 1959. Mastered from original analog tapes on heavy virgin vinyl.",
     specs: {
       catalogNumber: "CS-8163",
@@ -30,7 +30,7 @@ export const ALBUMS = [
     genre: "Electronic",
     price: 44.50,
     stock: 5,
-    image: "./src/assets/AmbientWorks.png",
+    image: "/src/assets/AmbientWorks.png",
     description: "Seminal ambient techno masterwork featuring layered analog synthesizers and breakbeat rhythms on gatefold 2xLP.",
     specs: {
       catalogNumber: "AMB-3922",
@@ -53,7 +53,7 @@ export const ALBUMS = [
     genre: "Rock",
     price: 36.00,
     stock: 14,
-    image: "./src/assets/AbbeyRoad.png",
+    image: "/src/assets/AbbeyRoad.png",
     description: "Stereo mix produced by Giles Martin directly from original eight-track session tapes.",
     specs: {
       catalogNumber: "PCS-7088",
@@ -76,7 +76,7 @@ export const ALBUMS = [
     genre: "Classical",
     price: 31.25,
     stock: 4,
-    image: "./src/assets/GoldbergVariations.png",
+    image: "/src/assets/GoldbergVariations.png",
     description: "The landmark 1981 digital recording documenting Gould's contemplative return to Bach's variations.",
     specs: {
       catalogNumber: "IM-37779",
@@ -99,7 +99,7 @@ export const ALBUMS = [
     genre: "Jazz",
     price: 34.00,
     stock: 8,
-    image: "./src/assets/HeadHunters.png",
+    image: "/src/assets/HeadHunters.png",
     description: "Pioneering jazz-funk fusion powered by ARP synthesizers, clavinet grooves, and Paul Jackson's basslines.",
     specs: {
       catalogNumber: "KC-32731",
@@ -121,7 +121,7 @@ export const ALBUMS = [
     genre: "Electronic",
     price: 42.00,
     stock: 6,
-    image: "./src/assets/MusicChildren.png",
+    image: "/src/assets/MusicChildren.png",
     description: "Warm, nostalgic downtempo electronica built with degraded tape samples, vintage synth patches, and field recordings.",
     specs: {
       catalogNumber: "WARP-LP55",
@@ -144,7 +144,7 @@ export const ALBUMS = [
     genre: "Rock",
     price: 29.99,
     stock: 16,
-    image: "./src/assets/Rumours.png",
+    image: "/src/assets/Rumours.png",
     description: "1977 pop-rock classic pressed on high-grade vinyl with gatefold packaging and lyric insert.",
     specs: {
       catalogNumber: "BSK-3010",
@@ -167,7 +167,7 @@ export const ALBUMS = [
     genre: "Classical",
     price: 49.00,
     stock: 3,
-    image: "./src/assets/MaxSleep.png",
+    image: "/src/assets/MaxSleep.png",
     description: "Curated 2xLP selections from Richter's 8-hour composition scored for piano, string quintet, soprano, and modular electronics.",
     specs: {
       catalogNumber: "DG-479-5257",
