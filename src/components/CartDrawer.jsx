@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -6,15 +6,52 @@ const CartDrawer = ({ isOpen, cart, onClose, onUpdateQuantity, onRemove }) => {
 
     
   const navigate = useNavigate();
-
+  const [warning, setWarning] = useState("");
   // if the drawer is not open then break out of this component
   if (!isOpen) return null;
 
-  // logic: calculating the total price.
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
+//Combined Subtotal with check stock.
+const calculateSubtotal = () => {
+  let total = 0;
+  let exceedsStock = false;
+
+  cart.forEach((item) => {
+    total += item.price * item.quantity;
+
+    if (item.quantity > item.stock) {
+      exceedsStock = true;
+    }
+  });
+
+  setWarning(exceedsStock ? "Quantity Exceeds Stock" : "");
+
+  return total;
+};
+//Created an alias seperate subtotal function for future reference
+const subtotal = calculateSubtotal();
+
+  //Locks down Cart buttons in case we are at stock so users cant get more. If this process is bypassed a warning will be shown and they cant checkout
+  const exceedsStock = cart.some(
+  (item) => item.quantity > item.stock
   );
+  //Error handeling for if stock is greater than whats available
+    const handleQuantityChange = (item, amount) => {
+      const newQuantity = item.quantity + amount;
+
+      if (amount < 0) {
+        onUpdateQuantity(item.id, amount);
+        return;
+      }
+
+      //Prevent quantity increases beyond available stock.
+      if (newQuantity > item.stock) {
+        setWarning("Quantity Exceeds Stock");
+        return;
+      }
+
+      setWarning("");
+      onUpdateQuantity(item.id, amount);
+    };
 
   // the first introduction to auto-navigation
   // when a user complete an action on the page take them somewhere
@@ -51,26 +88,40 @@ const CartDrawer = ({ isOpen, cart, onClose, onUpdateQuantity, onRemove }) => {
                     <p className="cart-item-price">
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
-                    <div className="qty-controls">
-                      <button onClick={() => onUpdateQuantity(item.id, -1)}>
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => onUpdateQuantity(item.id, 1)}>
-                        +
-                      </button>
-                      <button
-                        className="btn-remove"
-                        onClick={() => onRemove(item.id)}
-                      >
-                        🗑️
-                      </button>
-                    </div>
+                  <div className="qty-controls">
+                    <button onClick={() => handleQuantityChange(item, -1)}>
+                      -
+                    </button>
+
+                    <span>{item.quantity}</span>
+
+                    <button
+                      onClick={() => handleQuantityChange(item, 1)}
+                      disabled={item.quantity >= item.stock}
+                    >
+                      +
+                    </button>
+
+                    <button
+                      className="btn-remove"
+                      onClick={() => {
+                        onRemove(item.id);
+                        setWarning("");
+                      }}
+                    >
+                      🗑️
+                    </button>
+                  </div>
                   </div>
                 </li>
               ))}
             </ul>
           )}
+          {warning && (
+          <p className="stock-warning" role="alert">
+            {warning}
+          </p>
+        )}
         </div>
         {cart.length > 0 && (
           <div className="drawer-footer">
@@ -78,13 +129,14 @@ const CartDrawer = ({ isOpen, cart, onClose, onUpdateQuantity, onRemove }) => {
               <span>Subtotal:</span>
               <strong>${subtotal.toFixed(2)}</strong>
             </div>
-            <button
-              type="button"
-              className="btn btn-primary btn-block"
-              onClick={handleProceedToCheckout}
-            >
-              Proceed to Checkout
-            </button>
+        <button
+          type="button"
+          className="btn btn-primary btn-block"
+          onClick={handleProceedToCheckout}
+          disabled={exceedsStock}
+        >
+          Proceed to Checkout
+        </button>
           </div>
         )}
       </aside>

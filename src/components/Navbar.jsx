@@ -6,7 +6,7 @@ const Navbar = ({ cartCount, onOpenCart }) => {
     <header className="site-header">
       <div className="header-inner">
         <Link className="brand-logo" to="/">
-          💿 Vintage Vibes
+          💿 Vynl Vault
         </Link>
         <nav className="nav-actions">
           <Link className="nav-link" to="/">

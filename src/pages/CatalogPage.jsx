@@ -16,9 +16,9 @@ function CatalogPage({ albums, onAddToCart }) {
   return (
     <div className="catalog-container">
       <header className="catalog-hero">
-        <h1>Vintage Vibes</h1>
+        <h1>Vinyl Vault</h1>
         <p>
-          Vintage discs and albums for <b>Your Vibe</b>
+          Vintage Vinyl discs and albums for <b>Your Vibe</b>
         </p>
       </header>
 

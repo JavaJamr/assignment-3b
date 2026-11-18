@@ -6,6 +6,7 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
   const { id } = useParams();
   const [qty, setQty] = useState(1);
 
+
   //   which album to display on this page?
   const album = albums.find((p) => p.id === id);
 
@@ -35,15 +36,16 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
           <h1 className="detail-title">{album.title}</h1>
           <p className="detail-price">{album.price.toFixed(2)}</p>
           <p className="detail-desc">{album.description}</p>
+        <h3>Tracklist</h3>
         <div className="track-list-section">
-            <h3>Tracklist</h3>
             <ol className="tracklist-list">
                 {album.tracklist.map((track, index) => (
-                <li key={index}>{track}</li>))}
+                <li className="track-list-item" key={index}>{track}</li>))}
             </ol>
         </div>
+        <h3>Specifications</h3>
         <div className="detail-specs">
-            <h3>Specifications</h3>
+            
             <ol className="specs-list">
                 <li>Catalog Number: {album.specs.catalogNumber}</li>
                 <li>Weight: {album.specs.weight}</li>
@@ -60,16 +62,22 @@ const AlbumDetailPage = ({ albums, onAddToCart }) => {
           <div className="detail-actions">
             <div className="qty-input-group">
               <label htmlFor="detail-qty">Quantity: </label>
-              <input
-                type="number"
-                id="detail-qty"
-                min="1"
-                max={album.stock}
-                value={qty}
-                onChange={(e) =>
-                  setQty(Math.max(1, parseInt(e.target.value, 10) || 1))
-                }
-              />
+                <input
+                  type="number"
+                  id="detail-qty"
+                  min="1"
+                  max={album.stock}
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                  onBlur={() =>
+                    setQty(
+                      Math.min(
+                        album.stock,
+                        Math.max(1, parseInt(qty, 10) || 1)
+                      )
+                    )
+                  }
+                />
             </div>
             <button
               className="btn btn-primary"

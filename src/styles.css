@@ -352,24 +352,33 @@ body {
   margin-top: 0.5rem;
 }
 
-
+.detail-desc{
+  display: flex;
+  margin: 1rem;
+}
 .detail-specs{
-
+  padding: 0 0 0 1rem ;
+  margin: 0 0 2rem 0;
 }
 .specs-list{
-
-}
-.checkout-container{
-
-}
-.detail-actions{
-
-}
-.qty-input-group{
-
+  list-style-type: none;
 }
 tracklist-list{
-    
+  display: flex;
+    padding: 0 0 0 2rem ;
+    margin: 2rem 0 0 0;
+}
+.track-list-item{
+  margin: 0 0 0 2rem;
+}
+.stock-warning {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 @media (max-width: 768px) {
   .detail-grid,
